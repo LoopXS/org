@@ -98,8 +98,8 @@ if Config.DATABASE_URI:
     scheduler = AsyncIOScheduler(jobstores=jobstores)
 else:
     scheduler = AsyncIOScheduler()
-scheduler.start()
-dl=Downloader()
+    scheduler.start()
+    dl=Downloader()
 
 async def play():
     song=Config.playlist[0]    
