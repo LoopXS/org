@@ -370,7 +370,7 @@ async def channel_play_list(client, m: Message):
                 await k.edit("The given channel is invalid. For private channels it should start with -100 and for public channels it should start with @")
                 await delete_messages([m, k])
         else:
-            await k.edit("You didn't gave me any channel. Give me a channel id or username from which i should play files . \nFor private channels it should start with -100 and for public channels it should start with @\nExamples - `/cplay @VCPlayerFiles or /cplay -100125369865\n\nFor private channel, both bot and the USER account should be members of channel.")
+            await k.edit("You didn't gave me any channel. Give me a channel id or username from which i should play files . \nFor private channels it should start with -100 and for public channels it should start with @")
             await delete_messages([m, k])
 
 
@@ -470,7 +470,7 @@ allcmd = ["play", "player", f"play@{Config.BOT_USERNAME}", f"player@{Config.BOT_
 
 @Client.on_message(filters.command(admincmds) & ~admin_filter & chat_filter)
 async def notforu(_, m: Message):
-    k = await _.send_cached_media(chat_id=m.chat.id, file_id="CAADBQADEgQAAtMJyFVJOe6-VqYVzAI", caption="You Are Not Authorized", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('⚡️Join Here', url='https://t.me/subin_works')]]))
+    k = await _.send_cached_media(chat_id=m.chat.id, file_id="CAADBQADEgQAAtMJyFVJOe6-VqYVzAI", caption="You Are Not Authorized", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('✨ ꜱᴜᴘᴘᴏʀᴛ ✨', url='https://t.me/DarkPentester')]]))
     await delete_messages([m, k])
 
 @Client.on_message(filters.command(allcmd) & ~chat_filter & filters.group)
@@ -478,7 +478,7 @@ async def not_chat(_, m: Message):
     if m.from_user is not None and m.from_user.id in Config.SUDO:
         buttons = [
             [
-                InlineKeyboardButton('⚡️ Change CHAT', callback_data='set_new_chat'),
+                InlineKeyboardButton('🔹 ᴄʜᴀɴɢᴇ ᴄʜᴀᴛ 🔸', callback_data='set_new_chat'),
             ],
             [
                 InlineKeyboardButton('No', callback_data='closesudo'),
@@ -489,7 +489,7 @@ async def not_chat(_, m: Message):
     else:
         buttons = [
             [
-                InlineKeyboardButton('⚡️ Support', url='https://t.me/DarkPentester'),
+                InlineKeyboardButton('✨ ꜱᴜᴘᴘᴏʀᴛ ✨', url='https://t.me/DarkPentester'),
             ]
             ]
         await m.reply("<b>You can't use this bot in this group !</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
