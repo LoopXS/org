@@ -87,7 +87,7 @@ async def schedule_vc(bot, message):
                 text = message.text.split(" ", 1)
                 query = text[1]
             else:
-                await msg.edit("You Didn't gave me anything to schedule. Reply to a video or a youtube link or a direct link.")
+                await msg.edit("You didn't gave me anything to schedule.\nReply to a video or a youtube link or a direct link.")
                 await delete_messages([message, msg])
                 return
             regex = r"^(?:https?:\/\/)?(?:www\.)?youtu\.?be(?:\.com)?\/?.*(?:watch|embed)?(?:.*v=|v\/|\/)([\w\-_]+)\&?"
@@ -147,7 +147,7 @@ async def schedule_vc(bot, message):
                     title = results[0]["title"][:40]
                 except Exception as e:
                     await msg.edit(
-                        "Song not found.\nTry inline mode.."
+                        "Song not found.\nTry inline mode !"
                     )
                     LOGGER.error(str(e), exc_info=True)
                     await delete_messages([message, msg])
