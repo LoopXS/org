@@ -53,7 +53,7 @@ IST = pytz.timezone(Config.TIME_ZONE)
 if Config.DATABASE_URI:
     from utils import db
 
-HOME_TEXT = "<b>Hey  [{}](tg://user?id={}) 🙋‍♂️\n\nI'M A Bot Built To Play or Stream Videos In Telegram VoiceChats.\nI Can Stream Any YouTube Video Or A Telegram File Or Even A YouTube Live.</b>"
+HOME_TEXT = "<b>Hey [{}](tg://user?id={}) 🙋‍♂️\n\nI'M A Bot Built To Play or Stream Videos In Telegram VoiceChats.\nI Can Stream Any YouTube Video Or A Telegram File Or Even A YouTube Live.</b>"
 admin_filter=filters.create(is_admin) 
 
 @Client.on_message(filters.command(['start', f"start@{Config.BOT_USERNAME}"]))
@@ -63,22 +63,22 @@ async def start(client, message):
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton(f"Play", callback_data='help_play'),
-                        InlineKeyboardButton(f"Settings", callback_data=f"help_settings"),
-                        InlineKeyboardButton(f"Recording", callback_data='help_record'),
+                        InlineKeyboardButton(f"✗ ᴘʟᴀʏ ✗", callback_data='help_play'),
+                        InlineKeyboardButton(f"✗ ꜱᴇᴛᴛɪɴɢꜱ ✗", callback_data=f"help_settings"),
+                        InlineKeyboardButton(f"✗ ʀᴇᴄᴏʀᴅɪɴɢ ✗", callback_data='help_record'),
                     ],
                     [
-                        InlineKeyboardButton("Scheduling", callback_data="help_schedule"),
-                        InlineKeyboardButton("Controling", callback_data='help_control'),
-                        InlineKeyboardButton("Admins", callback_data="help_admin"),
+                        InlineKeyboardButton("✗ ꜱᴄʜᴇᴅᴜʟɪɴɢ ✗", callback_data="help_schedule"),
+                        InlineKeyboardButton("✗ ᴄᴏɴᴛʀᴏʟɪɴɢ ✗", callback_data='help_control'),
+                        InlineKeyboardButton("✗ ᴀᴅᴍɪɴꜱ ✗", callback_data="help_admin"),
                     ],
                     [
-                        InlineKeyboardButton(f"Misc", callback_data='help_misc'),
-                        InlineKeyboardButton("Close", callback_data="close"),
+                        InlineKeyboardButton(f"✗ ᴍɪꜱᴄ ✗", callback_data='help_misc'),
+                        InlineKeyboardButton("✗ ᴄʟᴏꜱᴇ ✗", callback_data="close"),
                     ],
                 ]
                 )
-            await message.reply("Learn to use the VCPlayer, Showing help menu, Choose from the below options.",
+            await message.reply("Learn To Use The VCPlayer, Showing Help Menu, Choose From The Below Options.",
                 reply_markup=reply_markup,
                 disable_web_page_preview=True
                 )
@@ -129,11 +129,11 @@ async def start(client, message):
         return
     buttons = [
         [
-            InlineKeyboardButton('👨🏻‍💻 Support', url='https://t.me/DarkPentester')
+            InlineKeyboardButton('✨ ꜱᴜᴘᴘᴏʀᴛ ✨', url='https://t.me/DarkPentester')
         ],
         [
-            InlineKeyboardButton('👨🏼‍🦯 Help', callback_data='help_main'),
-            InlineKeyboardButton('🗑 Close', callback_data='close'),
+            InlineKeyboardButton('➰ ʜᴇʟᴘ ➰', callback_data='help_main'),
+            InlineKeyboardButton('✗ ᴄʟᴏꜱᴇ ✗', callback_data='close'),
         ]
     ]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -147,20 +147,19 @@ async def show_help(client, message):
     reply_markup=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("Play", callback_data='help_play'),
-                InlineKeyboardButton("Settings", callback_data=f"help_settings"),
-                InlineKeyboardButton("Recording", callback_data='help_record'),
-            ],
-            [
-                InlineKeyboardButton("Scheduling", callback_data="help_schedule"),
-                InlineKeyboardButton("Controling", callback_data='help_control'),
-                InlineKeyboardButton("Admins", callback_data="help_admin"),
-            ],
-            [
-                InlineKeyboardButton("Misc", callback_data='help_misc'),
-                InlineKeyboardButton("Config Vars", callback_data='help_env'),
-                InlineKeyboardButton("Close", callback_data="close"),
-            ],
+                InlineKeyboardButton(f"✗ ᴘʟᴀʏ ✗", callback_data='help_play'),
+                        InlineKeyboardButton(f"✗ ꜱᴇᴛᴛɪɴɢꜱ ✗", callback_data=f"help_settings"),
+                        InlineKeyboardButton(f"✗ ʀᴇᴄᴏʀᴅɪɴɢ ✗", callback_data='help_record'),
+                    ],
+                    [
+                        InlineKeyboardButton("✗ ꜱᴄʜᴇᴅᴜʟɪɴɢ ✗", callback_data="help_schedule"),
+                        InlineKeyboardButton("✗ ᴄᴏɴᴛʀᴏʟɪɴɢ ✗", callback_data='help_control'),
+                        InlineKeyboardButton("✗ ᴀᴅᴍɪɴꜱ ✗", callback_data="help_admin"),
+                    ],
+                    [
+                        InlineKeyboardButton(f"✗ ᴍɪꜱᴄ ✗", callback_data='help_misc'),
+                        InlineKeyboardButton("✗ ᴄʟᴏꜱᴇ ✗", callback_data="close"),
+                    ],
         ]
         )
     if message.chat.type != "private" and message.from_user is None:
@@ -178,7 +177,7 @@ async def show_help(client, message):
     if Config.msg.get('help') is not None:
         await Config.msg['help'].delete()
     Config.msg['help'] = await message.reply_text(
-        "Learn to use the VCPlayer, Showing help menu, Choose from the below options.",
+        "Learn To Use The VCPlayer, Showing Help Menu, Choose From The Below Options.",
         reply_markup=reply_markup,
         disable_web_page_preview=True
         )
@@ -187,10 +186,10 @@ async def show_help(client, message):
 async def repo_(client, message):
     buttons = [
         [
-            InlineKeyboardButton('👨🏻‍💻 Support', url='https://t.me/DarkPentester'),     
+            InlineKeyboardButton('✨ ꜱᴜᴘᴘᴏʀᴛ ✨', url='https://t.me/DarkPentester'),     
         ],
         [
-            InlineKeyboardButton('🗑 Close', callback_data='close'),
+            InlineKeyboardButton('✗ ᴄʟᴏꜱᴇ ✗', callback_data='close'),
         ]
     ]
     await message.reply("<b>For More Information 👇🏻</b>", reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
@@ -225,7 +224,7 @@ async def update_handler(client, message):
 async def get_logs(client, message):
     m=await message.reply("Checking logs..")
     if os.path.exists("botlog.txt"):
-        await message.reply_document('botlog.txt', caption="Bot Logs")
+        await message.reply_document('botlog.txt', caption="~ [Bot Logs](https://t.me/DarkPentester)")
         await m.delete()
         await delete_messages([message])
     else:
