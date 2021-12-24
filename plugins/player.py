@@ -481,10 +481,10 @@ async def not_chat(_, m: Message):
                 InlineKeyboardButton('🔹 ᴄʜᴀɴɢᴇ ᴄʜᴀᴛ 🔸', callback_data='set_new_chat'),
             ],
             [
-                InlineKeyboardButton('No', callback_data='closesudo'),
+                InlineKeyboardButton('✗ ɴᴏᴘᴇ ✗', callback_data='closesudo'),
             ]
             ]
-        await m.reply("This is not the group which i have been configured to play, Do you want to set this group as default CHAT?", reply_markup=InlineKeyboardMarkup(buttons))
+        await m.reply("This Is Not The Group Which I Have Been Configured To Play, Do You Want To Set This Group As Default Chat?", reply_markup=InlineKeyboardMarkup(buttons))
         await delete_messages([m])
     else:
         buttons = [
@@ -492,5 +492,5 @@ async def not_chat(_, m: Message):
                 InlineKeyboardButton('✨ ꜱᴜᴘᴘᴏʀᴛ ✨', url='https://t.me/DarkPentester'),
             ]
             ]
-        await m.reply("<b>You can't use this bot in this group !</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
+        await m.reply("<b>You Can't Use This Bot In This Group !</b>", disable_web_page_preview=True, reply_markup=InlineKeyboardMarkup(buttons))
 
