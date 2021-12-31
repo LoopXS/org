@@ -16,7 +16,8 @@ from utils import (
     play, 
     start_stream,
     startup_check, 
-    sync_from_db
+    sync_from_db,
+    check_changes
 )
 from user import group_call, USER
 from utils import LOGGER
@@ -25,6 +26,7 @@ from pyrogram import idle
 from bot import bot
 import asyncio
 import os
+
 if Config.DATABASE_URI:
     from utils import db
 
@@ -43,6 +45,7 @@ async def main():
                         await db.del_config("RESTART")
                     except:
                         pass
+            await check_changes()
             await sync_from_db()
         except Exception as e:
             LOGGER.error(f"Errors occured while setting up database for VCPlayerBot, check the value of DATABASE_URI. Full error - {str(e)}", exc_info=True)
@@ -84,9 +87,14 @@ async def main():
                 LOGGER.info("Loop play enabled , starting playing startup stream.")
                 await start_stream()
     except Exception as e:
-        LOGGER.error(f"Startup was unsuccesfull, Errors - {e}", exc_info=True)
-        LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")
-        Config.STARTUP_ERROR=f"Startup was unsuccesfull, Errors - {e}"
+        if "unpack requires" in str(e):
+            LOGGER.error("You Have to generate a new session string from the link given in README of the repo and replace the existing one with the new.")
+            LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")
+            Config.STARTUP_ERROR=f"You Have to generate a new session string from the link given in README of the repo and replace the existing one with the new. \nGenerate string session from https://repl.it/@subinps/getStringName"
+        else:
+            LOGGER.error(f"Startup was unsuccesfull, Errors - {e}", exc_info=True)
+            LOGGER.info("Activating debug mode, you can reconfigure your bot with /env command.")
+            Config.STARTUP_ERROR=f"Startup was unsuccesfull, Errors - {e}"
         from utils import debug
         await bot.stop()
         await debug.start()
