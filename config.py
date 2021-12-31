@@ -54,7 +54,8 @@ class Config:
     #heroku
     API_KEY=os.environ.get("HEROKU_API_KEY", None)
     APP_NAME=os.environ.get("HEROKU_APP_NAME", None)
-    
+
+
     #Optional Configuration
     SHUFFLE=is_enabled(os.environ.get("SHUFFLE", 'True'))
     ADMIN_ONLY=is_enabled(os.environ.get("ADMIN_ONLY", "False"))
@@ -92,6 +93,10 @@ class Config:
 
     SCHEDULE_LIST=[]
     playlist=[]
+    CONFIG_LIST = ["ADMINS", "IS_VIDEO", "IS_LOOP", "REPLY_PM", "ADMIN_ONLY", "SHUFFLE", "EDIT_TITLE", "CHAT", 
+    "SUDO", "REPLY_MESSAGE", "STREAM_URL", "DELAY", "LOG_GROUP", "SCHEDULED_STREAM", "SCHEDULE_LIST", 
+    "IS_VIDEO_RECORD", "IS_RECORDING", "WAS_RECORDING", "RECORDING_TITLE", "PORTRAIT", "RECORDING_DUMP", "HAS_SCHEDULE", 
+    "CUSTOM_QUALITY"]
 
     STARTUP_ERROR=None
 
@@ -133,7 +138,7 @@ class Config:
         REPLY_PM=True
         LOGGER.info("Reply Message Found, Enabled PM MSG")
     else:
-        REPLY_MESSAGE=None
+        REPLY_MESSAGE=False
         REPLY_PM=False
 
     if E_BITRATE:
@@ -203,7 +208,7 @@ Note: __For both the cases /fplay also can be used by admins to play the song im
 
 3. Play from a YouTube playlist
 Command: **/yplay**
-__First get a playlist file from and reply to playlist file.__
+__First get a playlist file from @GetPlaylistBot or @DumpPlaylist and reply to playlist file.__
 
 4. Live Stream
 Command: **/stream**
@@ -319,10 +324,10 @@ Command: **/seek**
 __You can pass number of seconds to be skipped. Example: /seek 10 to skip 10 sec. /seek -10 to rewind 10 sec.__
 
 9. Mute the player.
-Command: **/mute**
+Command: **/vcmute**
 
 10. Unmute the player.
-Command : **/unmute**
+Command : **/vcunmute**
 
 11. Shows the playlist.
 Command: **/playlist** 
@@ -353,7 +358,7 @@ __If your player went something gone wrong, you can easily check the logs using 
  
 Command : **/env**
 __Setup your config vars with /env command.__
-__Example: To set up a__ `REPLY_MESSAGE` __use__ `/env REPLY_MESSAGE=hey honey, pls don't pm me :)`__
+__Example: To set up a__ `REPLY_MESSAGE` __use__ `/env REPLY_MESSAGE=Hey, Check out @subin_works rather than spamming in my PM`__
 __You can delete a config var by ommiting a value for that, Example:__ `/env LOG_GROUP=` __this will delete the existing LOG_GROUP config.
 
 Command: **/config**
@@ -377,14 +382,14 @@ Tip: __You can easily change the CHAT config by adding the user account and bot 
 
 3. `BOT_TOKEN` : __[@Botfather](https://telegram.dog/BotFather)__
 
-4. `SESSION_STRING` : __Generate From Anywhere.__
+4. `SESSION_STRING` : __Generate From here [GenerateStringName](https://repl.it/@subinps/getStringName)__
 
 5. `CHAT` : __ID of Channel/Group where the bot plays Music.__
 
 6. `STARTUP_STREAM` : __This will be streamed on startups and restarts of bot. 
 You can use either any STREAM_URL or a direct link of any video or a Youtube Live link. 
-You can also use YouTube Playlist.Find a Telegram Link for your playlist. 
-The PlayList link should in form `https://t.me/`
+You can also use YouTube Playlist.Find a Telegram Link for your playlist from [PlayList Dumb](https://telegram.dog/DumpPlaylist) or get a PlayList from [PlayList Extract](https://telegram.dog/GetAPlaylistbot). 
+The PlayList link should in form `https://t.me/DumpPlaylist/xxx`
 You can also use the files from a channel as startup stream. For that just use the channel id or channel username of channel as STARTUP_STREAM value.
 For more info on channel play , read help from player section.__
 
